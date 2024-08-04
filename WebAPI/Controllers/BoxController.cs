@@ -30,6 +30,8 @@ namespace WebAPI.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(ex);
+                return StatusCode(500, "An error occurred. Please contact administrator");
             }
             return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(dt));
 
