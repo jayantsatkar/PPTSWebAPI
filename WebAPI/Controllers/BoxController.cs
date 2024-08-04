@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using WebAPI.Repository;
 using Newtonsoft.Json;
+using NLog;
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -10,6 +11,8 @@ namespace WebAPI.Controllers
     public class BoxController : ControllerBase
     {
         private readonly IBoxRepository boxRepository;
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
 
         public BoxController(IBoxRepository boxRepository)
         {
@@ -19,6 +22,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public ActionResult GetReportData()
         {
+            logger.Info("Application Started");
             DataTable dt = new DataTable();
             try
             {
