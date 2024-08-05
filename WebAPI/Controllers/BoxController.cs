@@ -17,13 +17,14 @@ namespace WebAPI.Controllers
         public BoxController(IBoxRepository boxRepository)
         {
             this.boxRepository = boxRepository;
+            logger.Info("Application Started");
         }
 
         [HttpGet]
         public ActionResult GetReportData()
         {
-            logger.Info("Application Started");
-            DataTable dt = new DataTable();
+
+            DataTable dt;//= new DataTable();
             try
             {
              dt = boxRepository.GetReportData();
