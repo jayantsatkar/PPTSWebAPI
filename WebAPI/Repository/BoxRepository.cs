@@ -18,5 +18,14 @@ namespace WebAPI.Repository
 
             return DBHelper.ExecuteProcedure("usp_GetFloatReport", parameters);
         }
+
+        public DataTable GetAllPartNumbers()
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            return DBHelper.ExecuteProcedure("usp_GetParts", parameters);
+        }
+
+        
     }
 }

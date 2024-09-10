@@ -6,8 +6,9 @@ using Newtonsoft.Json;
 using NLog;
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    
     public class BoxController : ControllerBase
     {
         private readonly IBoxRepository boxRepository;
@@ -20,7 +21,7 @@ namespace WebAPI.Controllers
             logger.Info("Application Started");
         }
 
-        [HttpGet]
+        [HttpGet("ReportData")]
         public ActionResult GetReportData()
         {
 
@@ -28,6 +29,24 @@ namespace WebAPI.Controllers
             try
             {
              dt = boxRepository.GetReportData();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500, "An error occurred. Please contact administrator");
+            }
+            return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(dt));
+
+        }
+
+        [HttpGet("GetAllPartNumbers")]
+        public ActionResult GetAllPartNumbers()
+        {
+
+            DataTable dt;//= new DataTable();
+            try
+            {
+                dt = boxRepository.GetAllPartNumbers();
             }
             catch (Exception ex)
             {

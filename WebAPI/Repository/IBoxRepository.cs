@@ -5,5 +5,7 @@ namespace WebAPI.Repository
     public interface IBoxRepository
     {
         DataTable GetReportData();
+
+        DataTable GetAllPartNumbers();
     }
 }
