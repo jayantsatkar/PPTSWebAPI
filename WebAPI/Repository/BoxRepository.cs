@@ -12,11 +12,12 @@ namespace WebAPI.Repository
             Configuration = configuration;
         }
 
-        public DataTable GetReportData()
+        public DataSet GetReportData(String PartNumber)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
+            DBHelper.AddSqlParameter("@BoschPart_No", PartNumber, ref parameters);
 
-            return DBHelper.ExecuteProcedure("usp_GetFloatReport", parameters);
+            return DBHelper.ExecuteProcedureDataSet("usp_GetFloatReport", parameters);
         }
 
         public DataTable GetAllPartNumbers()

@@ -4,7 +4,7 @@ namespace WebAPI.Repository
 {
     public interface IBoxRepository
     {
-        DataTable GetReportData();
+        DataSet GetReportData(string PartNumber);
 
         DataTable GetAllPartNumbers();
     }

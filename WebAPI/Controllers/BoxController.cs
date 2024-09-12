@@ -4,6 +4,7 @@ using System.Data;
 using WebAPI.Repository;
 using Newtonsoft.Json;
 using NLog;
+using Newtonsoft.Json.Linq;
 namespace WebAPI.Controllers
 {
     [ApiController]
@@ -21,14 +22,16 @@ namespace WebAPI.Controllers
             logger.Info("Application Started");
         }
 
-        [HttpGet("ReportData")]
-        public ActionResult GetReportData()
+        [HttpPost("ReportData")]
+        public ActionResult GetReportData(dynamic obj)
         {
 
-            DataTable dt;//= new DataTable();
+            DataSet dt;//= new DataTable();
             try
             {
-             dt = boxRepository.GetReportData();
+                JObject jsonObject = JObject.Parse(obj.ToString());
+                string PartNumber = (string)jsonObject["partNumber"];
+             dt = boxRepository.GetReportData(PartNumber);
             }
             catch (Exception ex)
             {
