@@ -27,7 +27,8 @@ namespace WebAPI.Repository
         {
             get
             {
-                return Configuration.GetConnectionString("DBConnection");
+
+                return Configuration.GetConnectionString("DBConnection") ?? String.Empty;
                 //return ConfigurationManager.AppSettings["apiUrl"].ToString();
             }
         }
